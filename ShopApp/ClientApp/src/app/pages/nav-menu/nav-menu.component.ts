@@ -1,4 +1,6 @@
-import { Component } from '@angular/core';
+import { Component, Inject, forwardRef } from '@angular/core';
+import { ApiService } from '../../services/api.service';
+import { HomeComponent } from '../home/home.component';
 
 @Component({
   selector: 'app-nav-menu',
@@ -8,6 +10,10 @@ import { Component } from '@angular/core';
 export class NavMenuComponent {
   isExpanded = false;
 
+  constructor() {
+    
+  }
+
   collapse() {
     this.isExpanded = false;
   }
@@ -15,4 +21,10 @@ export class NavMenuComponent {
   toggle() {
     this.isExpanded = !this.isExpanded;
   }
+
+  parseHtml() {
+   // this.homeComponent.parseData();
+  }
+
+  
 }
