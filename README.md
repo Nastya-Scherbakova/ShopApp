@@ -4,6 +4,7 @@ Practicing with ASP.NET Core 2.2 new features + improving Angular 6 skills. Also
 # Created for
 The app was created for parsing internet-shop and output items main info.
 Also you can view a statistics of price changing for each item.
+ORM: EF Core.
 It's wasn't made for all internet shops, specifically for Nike.
 The latest version of Angular Material is used for making beautiful and simply UI.
 
