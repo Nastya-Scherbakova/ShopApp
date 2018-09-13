@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { ApiService } from '../../services/api.service';
-import { throwError } from 'rxjs';
+import { throwError, Subscription } from 'rxjs';
 import Item from '../../models/item.model';
 
 @Component({
@@ -9,13 +9,14 @@ import Item from '../../models/item.model';
 })
 export class HomeComponent implements OnInit{
   public items: Array<Item>;
-
+  subscription: Subscription;
   constructor(private api: ApiService) {
 
   }
 
   ngOnInit() {
     this.getItemList();
+    this.subscription = this.parseData();
   }
 
   getItemList() {
@@ -32,7 +33,7 @@ export class HomeComponent implements OnInit{
   }
 
   parseData() {
-    this.api.parse().subscribe(
+    return this.api.parse().subscribe(
       data => {
          this.items = data as Array<Item>;
          return true;

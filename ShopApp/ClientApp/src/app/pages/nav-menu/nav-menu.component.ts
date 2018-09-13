@@ -1,6 +1,7 @@
 import { Component, Inject, forwardRef } from '@angular/core';
 import { ApiService } from '../../services/api.service';
-import { HomeComponent } from '../home/home.component';
+import { debug } from 'util';
+
 
 @Component({
   selector: 'app-nav-menu',
@@ -10,7 +11,7 @@ import { HomeComponent } from '../home/home.component';
 export class NavMenuComponent {
   isExpanded = false;
 
-  constructor() {
+  constructor(private api:ApiService) {
     
   }
 
@@ -23,7 +24,7 @@ export class NavMenuComponent {
   }
 
   parseHtml() {
-   // this.homeComponent.parseData();
+    this.api.parse();
   }
 
   

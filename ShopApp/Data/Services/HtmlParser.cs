@@ -8,6 +8,7 @@ using HtmlAgilityPack;
 using System.Net.Http;
 using System.IO;
 using ShopApp.Data;
+using System.Text;
 
 namespace ShopApp.Services
 {
@@ -24,7 +25,7 @@ namespace ShopApp.Services
             
             
             HttpClient hc = new HttpClient();
-            HttpResponseMessage result = await hc.GetAsync("https://store.nike.com/us/en_us/pw/womens-best/7ptZpi1?ipp=100");
+            HttpResponseMessage result = await hc.GetAsync("https://hotline.ua/mobile/umnye-chasy-smartwatch/");
 
             Stream stream = await result.Content.ReadAsStreamAsync();
 
@@ -32,12 +33,12 @@ namespace ShopApp.Services
 
             doc.Load(stream);
 
-            HtmlNodeCollection productNodes = doc.DocumentNode.SelectNodes("//div[@class='exp-product-wall clearfix']/div[@class='grid-item fullSize'][position()<100]");
+          
 
-            var titles = productNodes.Select(c1 => c1.SelectSingleNode("//div[@class='product-name ']/p[last()-1]")).ToList();
-            var abouts = productNodes.Select(c1 => c1.SelectSingleNode("//div[@class='product-name ']/p[last()]")).ToList();
-            var images = productNodes.Select(c1 => c1.SelectSingleNode("//div[@class='grid-item-image']//a[@href]")).ToList();
-            var prices = productNodes.Select(c1 => c1.SelectSingleNode("//div[@class='prices']/span[last()]")).ToList();
+            var titles = doc.DocumentNode.SelectNodes("//div[@class='item-info']/p/a").ToList();
+            var abouts = doc.DocumentNode.SelectNodes("//div[@class='text']").ToList();
+            var images = doc.DocumentNode.SelectNodes("//div[@class='item-img']/a/img").ToList();
+            var prices = doc.DocumentNode.SelectNodes("//div[@class='price-md']/span").ToList();
 
 
 
@@ -54,7 +55,7 @@ namespace ShopApp.Services
         /// <param name="titles"> all items titles </param>
         /// <param name="abouts"> all items about infos </param>
         /// <param name="images"> all items image hrefs </param>
-        /// <param name="prices"> all item prices with "$" at the beginning (because of website structure and info) </param>
+        /// <param name="prices"> all item prices </param>
         /// <returns></returns>
         private async Task HandleParsedDataAsync(ShopAppContext context,
             List<HtmlNode> titles, 
@@ -67,18 +68,24 @@ namespace ShopApp.Services
 
             for (var i = 0; i < titles.Count(); i++)
             {
-                var newItem = new Item()
+                var imageHref = images[i].Attributes["src"].Value;
+                Item newItem = new Item()
                 {
                     Title = titles[i].InnerText,
                     About = abouts[i].InnerText,
-                    Image = images[i].Attributes["href"].Value
+                    Image = $"https://hotline.ua{imageHref}"
 
 
                 };
                 decimal price;
-                decimal.TryParse(prices[i].InnerText.TrimStart('$'), out price);
+                string replacedPrice = prices[i].InnerText.Replace("&nbsp;", "");
+                decimal.TryParse(replacedPrice, out price);
                 newItem.CurrentPrice = price;
-                Item oldItem = items.First(item => item.Title == newItem.Title);
+                Item oldItem = null;
+                if (items.Any())
+                {
+                    oldItem = items.FirstOrDefault(item => item.Title == newItem.Title);
+                }
 
                 if (!(oldItem is null))
                 {
@@ -89,6 +96,8 @@ namespace ShopApp.Services
                             Price = price,
                             Date = DateTime.UtcNow
                         });
+                        oldItem.Image = newItem.Image;
+                        oldItem.About = newItem.About;
                         oldItem.CurrentPrice = price;
                         context.Update(oldItem);
                     }
@@ -109,6 +118,7 @@ namespace ShopApp.Services
             }
 
             await context.AddRangeAsync(newItems);
+            await context.SaveChangesAsync();
 
         }
 

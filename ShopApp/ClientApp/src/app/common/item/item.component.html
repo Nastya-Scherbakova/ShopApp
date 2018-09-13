@@ -6,8 +6,8 @@
   </mat-card-header>
   <img mat-card-image src="{{this.item.image}}" alt="{{this.item.title}}">
   <mat-card-content>
-    <p>
-      {{this.item.about}}
+    <p [innerHTML]="this.item.about">
+
     </p>
   </mat-card-content>
   <mat-card-actions>
