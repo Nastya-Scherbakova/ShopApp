@@ -10,7 +10,7 @@ namespace ShopApp.Models
         public string About {get;set;}
         public string Image {get;set;}
         public decimal CurrentPrice{get;set;}
-        public virtual IEnumerable<PriceInfo> PriceHistory {get;set;}
+        public virtual List<PriceInfo> PriceHistory {get;set;}
 
         public Item()
         {

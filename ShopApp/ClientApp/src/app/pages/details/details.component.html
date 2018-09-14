@@ -1,0 +1,21 @@
+
+<div class="content-container container">
+  <div class="row" *ngIf="item">
+
+    <div class="col-5"> <img src="{{item.image}}" width="100%"></div>
+    <div class="col">
+      <div class="details-title"> {{item.title}}</div>
+      <div [innerHtml]="item.about" class="details-about"></div>
+      <div class="details-price">{{item.currentPrice | currency: '₴'}}</div>
+      <button mat-button (click)="showChart=!showChart">
+        Show me price statistics
+        <mat-icon *ngIf="!showChart">keyboard_arrow_down</mat-icon>
+        <mat-icon *ngIf="showChart">keyboard_arrow_up</mat-icon>
+      </button>
+    </div>
+  </div>
+  <mat-spinner *ngIf="!item"></mat-spinner>
+  <div class="chart-content" *ngIf="showChart" [chart]="chart"></div>
+
+</div>
+

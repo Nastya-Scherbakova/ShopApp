@@ -12,7 +12,42 @@ html {
     font-size: 16px;
   }
 }
+.nav-item{
+  cursor: pointer;
+
+}
+
+.wait-for {
+  position: absolute;
+  display: flex;
+  align-content: center;
+  width: 100%;
+  height: calc( 100% - 57px);
+  z-index: 3;
+  background: #606060;
+  opacity: 0.4;
+}
+
+mat-spinner {
+  opacity: 1;
+  position: absolute;
+  z-index:5;
+  left: 45%;
+  top: calc(45% - 28px);
+}
+
+.nav-link{
+  display:inline-block;
+}
+
+.item-header-image {
+  background: url('https://hotline.ua/public/i/logo.svg') 50% 50% no-repeat;
+  width: 45px;
+  height: 11px;
+  display: inline-block;
+}
 
 .box-shadow {
   box-shadow: 0 .25rem .75rem rgba(0, 0, 0, .05);
+  z-index: 1;
 }

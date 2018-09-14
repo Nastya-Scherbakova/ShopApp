@@ -1,0 +1,63 @@
+.content-container {
+  overflow-y: auto;
+  height: 90vh;
+  width: 100%;
+  padding: 50px;
+  background: #fafafa;
+}
+.shop-item-card {
+  width: 600px;
+  position: relative;
+
+}
+.details-title {
+  padding: 20px;
+  font-size: 18px;
+  font-weight:600;
+  border-top: 1px dotted #cacaca;
+  border-bottom: 1px dotted #cacaca;
+}
+.details-about {
+  padding: 20px;
+  font-size: 14px;
+}
+.details-price {
+  padding: 20px;
+  font-size: 14px;
+}
+
+
+
+.item-header-image {
+  background: url('https://hotline.ua/public/i/logo.svg') 50% 50% no-repeat;
+}
+
+.mat-card-actions {
+  text-align: center;
+  width: 100%;
+  position: absolute;
+  bottom: 10px;
+  left: 0;
+  margin: 0 !important;
+}
+
+  .mat-card-actions button {
+    font-weight: 600;
+  }
+
+.chart-content {
+  margin-top: 20px;
+  animation: show-chart 0.4s ease-in-out;
+}
+
+@keyframes show-chart{
+  0% {
+    opacity: 0;
+    margin-top:-10px;
+  }
+  100% {
+    opacity: 1;
+    margin-top: 20px;
+  }
+}
+

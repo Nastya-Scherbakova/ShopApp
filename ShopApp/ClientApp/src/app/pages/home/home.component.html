@@ -1,5 +1,7 @@
-
-<div *ngFor="let item of this.items" class="container items-container">
-  <item [item]="item"></item>
+<div class="content-container">
+  <div class="items-container container">
+    <item class="item" *ngFor="let item of items" [item]="item"></item>
+  </div>
+  <mat-spinner *ngIf="loading"></mat-spinner>
 </div>
 

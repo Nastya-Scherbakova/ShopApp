@@ -91,33 +91,41 @@ namespace ShopApp.Services
                 {
                     if (oldItem.CurrentPrice != price)
                     {
-                        oldItem.PriceHistory.ToList().Add(new PriceInfo()
+                        var priceInHistory = new PriceInfo()
                         {
                             Price = price,
-                            Date = DateTime.UtcNow
-                        });
+                            Date = DateTime.Now,
+                            Item = oldItem
+                        };
+                        oldItem.PriceHistory.Add(priceInHistory);
                         oldItem.Image = newItem.Image;
                         oldItem.About = newItem.About;
                         oldItem.CurrentPrice = price;
-                        context.Update(oldItem);
+                       
+                        context.Items.Update(oldItem);
+                        await context.SaveChangesAsync();
                     }
 
                 }
                 else
                 {
-                    newItem.PriceHistory.ToList().Add(new PriceInfo()
-                    {
-                        Price = price,
-                        Date = DateTime.UtcNow
-                    });
-                    newItems.Add(newItem);
+                    var priceInHistory = new PriceInfo()
+                        {
+                            Price = price,
+                            Date = DateTime.Now,
+                            Item = newItem
+                        };
+                    newItem.PriceHistory.Add(priceInHistory);
+                    
+                    context.Items.Add(newItem);
+                   await context.SaveChangesAsync();
+           
                 }
 
 
 
             }
 
-            await context.AddRangeAsync(newItems);
             await context.SaveChangesAsync();
 
         }

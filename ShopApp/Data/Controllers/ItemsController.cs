@@ -32,18 +32,20 @@ namespace ShopApp.Controllers
                 return NotFound();
             }
 
-            var item = await _context.Items
+            var item = await _context.Items.Include(el=>el.PriceHistory).AsNoTracking()
                 .FirstOrDefaultAsync(m => m.Id == id);
             if (item == null)
             {
                 return NotFound();
             }
+            item.PriceHistory.ForEach(el=>el.Item = null);
+            
 
             return Ok(item);
         }
 
         // GET: Items/Parse
-        public async Task<IActionResult> Parse()
+        public async Task<IEnumerable<Item>> Parse()
         {
             var context = _context;
 
@@ -52,7 +54,7 @@ namespace ShopApp.Controllers
 
             var changedItems = await context.Items.ToListAsync();
 
-            return Ok(changedItems);
+            return changedItems;
         }
 
         // GET: Items/Create

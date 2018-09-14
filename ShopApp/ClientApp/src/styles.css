@@ -1,5 +1,12 @@
 @import "~@angular/material/prebuilt-themes/indigo-pink.css";
 
-*{
+* {
   outline: none !important;
+  font-family: Roboto,"Helvetica Neue",sans-serif;
+}
+
+mat-spinner {
+  display: flex;
+  justify-content: center;
+  margin: 10px auto;
 }

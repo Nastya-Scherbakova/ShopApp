@@ -1,8 +1,25 @@
-.example-card {
-  max-width: 400px;
+.shop-item-card {
+  width: 300px;
+  position: relative;
+  height: 100%;
+
 }
 
-.example-header-image {
-  background-image: url('https://material.angular.io/assets/img/examples/shiba1.jpg');
-  background-size: cover;
+.item-header-image {
+  background: url('https://hotline.ua/public/i/logo.svg') 50% 50% no-repeat;
 }
+
+.mat-card-actions {
+  text-align: center;
+  width: 100%;
+  position: absolute;
+  bottom: 10px;
+  left: 0;
+  margin: 0 !important;
+}
+
+.mat-card-actions button{
+  font-weight: 600;
+}
+
+

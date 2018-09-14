@@ -1,6 +1,7 @@
-import { Component, Inject, forwardRef } from '@angular/core';
+import { Component, Inject, forwardRef, OnInit } from '@angular/core';
 import { ApiService } from '../../services/api.service';
 import { debug } from 'util';
+import { MatSnackBar } from '@angular/material/snack-bar';
 
 
 @Component({
@@ -8,12 +9,21 @@ import { debug } from 'util';
   templateUrl: './nav-menu.component.html',
   styleUrls: ['./nav-menu.component.css']
 })
-export class NavMenuComponent {
+export class NavMenuComponent implements OnInit{
   isExpanded = false;
+  public loading: boolean = false;
 
-  constructor(private api:ApiService) {
+  constructor(private api:ApiService, public snackBar: MatSnackBar) {
     
   }
+
+  ngOnInit() {
+    this.api.items.subscribe(items => {
+          this.loading = false;
+    }
+    );
+  }
+
 
   collapse() {
     this.isExpanded = false;
@@ -24,6 +34,7 @@ export class NavMenuComponent {
   }
 
   parseHtml() {
+    this.loading = true;
     this.api.parse();
   }
 

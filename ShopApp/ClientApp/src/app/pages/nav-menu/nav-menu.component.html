@@ -1,5 +1,5 @@
 <header>
-  <nav class='navbar navbar-expand-sm navbar-toggleable-sm navbar-light bg-white border-bottom box-shadow mb-3'>
+  <nav class='navbar navbar-expand-sm navbar-toggleable-sm navbar-light bg-white border-bottom box-shadow'>
     <div class="container">
       <a class="navbar-brand" [routerLink]='["/"]'>ShopApp</a>
       <button class="navbar-toggler" type="button" data-toggle="collapse" data-target=".navbar-collapse" aria-label="Toggle navigation"
@@ -10,6 +10,7 @@
         <ul class="navbar-nav flex-grow">
           <li class="nav-item" (click)="parseHtml()">
             <a class="nav-link text-dark">Parse shop</a>
+            <div class="item-header-image"></div>
           </li>
 
         </ul>
@@ -17,3 +18,9 @@
     </div>
   </nav>
 </header>
+<div *ngIf="loading" class="wait-for">
+
+  
+</div>
+<mat-spinner *ngIf="loading"></mat-spinner>
+
