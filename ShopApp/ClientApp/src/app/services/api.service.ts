@@ -7,7 +7,7 @@ import { debug } from 'util';
 
 @Injectable()
 export class ApiService {
-  private itemsSource = new BehaviorSubject([])
+  private itemsSource = new BehaviorSubject([]);
   items = this.itemsSource.asObservable();
   constructor(private http: HttpClient) { }
 

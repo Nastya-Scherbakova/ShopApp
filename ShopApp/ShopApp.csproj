@@ -29,12 +29,16 @@
   <ItemGroup>
     <None Remove="ClientApp\src\app\models\item.model.ts" />
     <None Remove="ClientApp\src\app\models\price-info.model.ts" />
+    <None Remove="ClientApp\src\app\pages\details\details.component.spec.ts" />
+    <None Remove="ClientApp\src\app\pages\nav-menu\nav-menu.component.spec.ts" />
     <None Remove="ClientApp\src\app\services\api.service.ts" />
   </ItemGroup>
 
   <ItemGroup>
     <TypeScriptCompile Include="ClientApp\src\app\models\item.model.ts" />
     <TypeScriptCompile Include="ClientApp\src\app\models\price-info.model.ts" />
+    <TypeScriptCompile Include="ClientApp\src\app\common\item\item.component.spec.ts" />
+    <TypeScriptCompile Include="ClientApp\src\app\pages\nav-menu\nav-menu.component.spec.ts" />
     <TypeScriptCompile Include="ClientApp\src\app\services\api.service.ts" />
   </ItemGroup>
 
