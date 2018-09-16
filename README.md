@@ -16,7 +16,7 @@ You must `update-database` in Package Manager Console before starting IIS. It cr
 XUnitTests project. To run tests click `Test`->`Run`->`All tests` in Visual Studio. There's 12 tests for ItemsController and HtmlParser service.
 
 ## Angular
-Tests in process. To run them open cmd in `ClientApp` directory and type:
+To run tests open cmd in `ClientApp` directory and type:
 ```sh
 ng test
 ```
