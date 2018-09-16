@@ -1,6 +1,7 @@
 <div class="content-container">
   <div class="items-container container">
     <item class="item" *ngFor="let item of items" [item]="item"></item>
+    <div class="jumbotron" *ngIf="!loading && items.length===0"> No items was found. Try to parse! (click on the button in toolbar) </div>
   </div>
   <mat-spinner *ngIf="loading"></mat-spinner>
 </div>
