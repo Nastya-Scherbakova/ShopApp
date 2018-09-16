@@ -28,5 +28,5 @@ There's only 7 simple tests.
 >The app was created for parsing internet-shop and output items main info.
 >Also you can view a statistics of price changing for each item.
 >EF Core was used.
->It's wasn't made for all internet shops, specifically for "hotline".
+>It wasn't made for all internet shops, specifically for "hotline".
 >The latest version of Angular Material is used for making beautiful and simply UI.
