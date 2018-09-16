@@ -22,4 +22,10 @@
   font-weight: 600;
 }
 
+@media (max-width: 340px){
+  .shop-item-card{
+    width: 250px;
+  }
+}
+
 
