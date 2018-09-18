@@ -7,6 +7,8 @@ update-database
 ```
 You must `update-database` in Package Manager Console before starting IIS. It creates the database using migrations.
 
+If AngularCLI is not answering: please, rebuild the solution and then start the IIS. 
+
 
 ***
 
